@@ -4,6 +4,17 @@ phases:
   install:
     commands:
       - npm install -g artillery@latest
+  pre_build:
+    commands:
+      - mkdir reports
   build:
     commands:
-      - artillery run loadtest.yaml
+      - artillery run --output reports/report.json loadtest.yaml
+  post_build:
+    commands:
+      - artillery report --output reports/report reports/report.json
+ 
+artifacts:
+  files:
+    - "reports/*"
+  name: artifacts/$CODEBUILD_BUILD_NUMBER
