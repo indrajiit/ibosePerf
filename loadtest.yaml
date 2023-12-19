@@ -1,11 +1,14 @@
 config:
+
+  http: 
+        extendedMetrics: true
   target: 'http://67.202.9.244'
   
   phases:
 
     - name: PerfLoadTest
-      duration: 30
-      arrivalRate: 1
+      duration: 15
+      arrivalRate: 2
   defaults:
     headers:
       Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
@@ -19,3 +22,5 @@ scenarios:
       - get:
           url: '/customers?customerId=125'
           
+          
+
