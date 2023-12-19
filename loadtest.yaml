@@ -4,7 +4,7 @@ config:
   phases:
 
     - name: PerfLoadTest
-      duration: 30
+      duration: 60
       arrivalRate: 2
   defaults:
     headers:
