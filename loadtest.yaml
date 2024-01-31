@@ -1,5 +1,11 @@
 config:
 
+  plugins:
+    publish-metrics:
+    
+        - type: cloudwatch
+          region: us-east-1
+
   http: 
         extendedMetrics: true
   target: 'https://dummyapi.io'
