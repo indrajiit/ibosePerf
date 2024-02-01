@@ -1,14 +1,8 @@
 config:
 
-  plugins:
-    publish-metrics:
-    
-        - type: cloudwatch
-          region: us-east-1
-
   http: 
         extendedMetrics: true
-  target: 'https://dummyapi.io'
+  target: 'https://m9jzah8f0g.execute-api.us-east-1.amazonaws.com/loadtest'
   
   phases:
 
@@ -27,7 +21,7 @@ config:
 scenarios:
   - flow:
       - get:
-          url: '/sign-in'
+          url: '/loadtest'
           
           
 
