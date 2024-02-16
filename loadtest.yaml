@@ -2,7 +2,7 @@ config:
 
   http: 
         extendedMetrics: true
-  target: 'https://m9jzah8f0g.execute-api.us-east-1.amazonaws.com/loadtest'
+  target: 'https://dummy.restapiexample.com'
   
   phases:
 
@@ -21,7 +21,7 @@ config:
 scenarios:
   - flow:
       - get:
-          url: '/loadtest'
+          url: 'api/v1/employees'
           
           
 
