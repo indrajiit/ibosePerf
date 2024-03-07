@@ -1,19 +1,19 @@
-version: 0.2
 
+version: 0.2
 phases:
   install:
     runtime-versions:
       java: corretto17
-  pre_build:
     commands:
-      - apt-get update -y
-      - apt-get install -y wget unzip
-      - wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
-      - tar -xf apache-jmeter-5.4.1.tgz
+      - echo Installing JMeter...
+      - wget https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.5.tgz
+      - tar -xzf apache-jmeter-5.5.tgz
+      - export PATH=$PATH:$(pwd)/apache-jmeter-5.5/bin
   build:
     commands:
-      - cd apache-jmeter-5.4.1/bin
-      - ./jmeter -n -t awsdistributed.jmx -l testresult.jtl
+      - echo Running JMeter tests...
+      - TIMESTAMP=$(date +%Y%m%d%H%M%S)
+      - jmeter -n -t awsdistributed.jmx -l results_${TIMESTAMP}.jtl
   post_build:
     commands:
-      - echo "JMeter test execution completed"
+      - echo JMeter tests completed.
