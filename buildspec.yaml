@@ -1,20 +1,19 @@
 version: 0.2
- 
+
 phases:
   install:
-    commands:
-      - npm install -g artillery@latest
+    runtime-versions:
+      java: openjdk8
   pre_build:
     commands:
-      - mkdir reports
+      - apt-get update -y
+      - apt-get install -y wget unzip
+      - wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
+      - tar -xf apache-jmeter-5.4.1.tgz
   build:
     commands:
-      - DEBUG=http:response artillery run --output reports/report.json loadtest.yaml
+      - cd apache-jmeter-5.4.1/bin
+      - ./jmeter -n -t awsdistributed.jmx -l testresult.jtl
   post_build:
     commands:
-      - DEBUG=http:response artillery report --output reports/report reports/report.json
- 
-artifacts:
-  files:
-    - "reports/*"
-  name: artifacts/$CODEBUILD_BUILD_NUMBER
+      - echo "JMeter test execution completed"
