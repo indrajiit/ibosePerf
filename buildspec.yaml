@@ -13,7 +13,7 @@ phases:
     commands:
       - echo Running JMeter tests...
       - TIMESTAMP=$(date +%Y%m%d%H%M%S)
-      - jmeter -n -t awsdistributed.jmx -l results_${TIMESTAMP}.jtl
+      - jmeter -n -t jmeterapitest.jmx -l results_${TIMESTAMP}.jtl
   post_build:
     commands:
       - echo JMeter tests completed.
